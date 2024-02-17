@@ -1,6 +1,11 @@
+import os
+import time
+from pathlib import Path
+
 import pyautogui as pag
 import pydirectinput as pdag
 
+PICS_FOLDER = Path(os.path.dirname(__file__)) / "static/locate_pics"
 
 def activate_ck3_window() -> None:
     title = "Crusader Kings III"
@@ -23,15 +28,28 @@ def activate_ck3_window() -> None:
 
 
 def find_button(pic_name: str) -> pag.Point:
-    confidence = 0.95    
-    button_placement = pag.locateOnScreen(pic_name, confidence=confidence)
+    confidence = 0.95
+    
+    pic_path = f"{PICS_FOLDER.as_posix()}/{pic_name}.png"    
+    button_placement = pag.locateOnScreen(pic_path, confidence=confidence)
     if not button_placement:
         raise RuntimeError("Button placement not found")
     
     return pag.center(button_placement)
 
 
-# def find_and_click()
+def safe_click(coords: pag.Point) -> None:
+    wait_time = 0.00001   #the game is sometimes too slow for an immediate response, this slows clicking a little
+    
+    pag.moveTo(coords.x, coords.y)
+    time.sleep(wait_time)
+    pag.click()
+    
+
+def find_and_click(pic_name: str) -> None:
+    button_center = find_button(pic_name)
+    safe_click(button_center)
+        
 
 def press(key: pag.KEYBOARD_KEYS, direct_x: bool = False) -> None:
     pdag.press(key) if direct_x else pag.press(key)
