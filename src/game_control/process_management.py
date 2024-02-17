@@ -3,7 +3,7 @@ import psutil
 import time
 from pathlib import Path
 
-import screen_control_utils as scu
+import game_control.screen_control_utils as scu
 
 GAME_TASK_NAME = "ck3.exe"
 GAME_PATH = Path(r"C:\Users\pawel\Documents\STUDIA\magisterka\ck3_debug.exe.lnk")
@@ -14,12 +14,12 @@ def game_has_been_started() -> bool:
 
 def start_game() -> None:
     if game_has_been_started():
+        scu.activate_ck3_window()
         print("Game has already been started. Aborting another game start.")
         return
     
     os.startfile(GAME_PATH)
     time.sleep(GAME_START_TIME)
-    
     try:
         scu.find_button("main_logo")
         scu.activate_ck3_window()
@@ -35,30 +35,8 @@ def end_game():
             p.kill() 
         
         
-def open_debug_mode() -> None:
-    scu.press("`", direct_x=True)   # open debug panel
-    scu.find_and_click("portrait_editor")
-    scu.press("`", direct_x=True)   # close debug panel
-   
-   
-def stabilize_heads() -> None:
-    scu.find_and_click("head_state")
-    scu.press("1", direct_x=True)
-    scu.find_and_click("torso_state")
-    scu.press("1", direct_x=True)
-      
-        
-def main():
-    start_game()
-    open_debug_mode()
-    stabilize_heads()
-    
 
     
-if __name__=="__main__":
-    main()
-    
-    
-    
+
     
     

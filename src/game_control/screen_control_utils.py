@@ -5,7 +5,7 @@ from pathlib import Path
 import pyautogui as pag
 import pydirectinput as pdag
 
-PICS_FOLDER = Path(os.path.dirname(__file__)) / "static/locate_pics"
+PICS_FOLDER = Path(os.path.dirname(__file__)) / "../static/locate_pics"
 
 def activate_ck3_window() -> None:
     title = "Crusader Kings III"
@@ -53,3 +53,8 @@ def find_and_click(pic_name: str) -> None:
 
 def press(key: pag.KEYBOARD_KEYS, direct_x: bool = False) -> None:
     pdag.press(key) if direct_x else pag.press(key)
+    
+
+def screenshot_face(output_path: str) -> None:
+    male_face_region = (489, 150, 300, 300)
+    pag.screenshot(output_path, region=male_face_region)
