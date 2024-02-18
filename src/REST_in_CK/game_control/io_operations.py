@@ -1,6 +1,10 @@
+import os
 from pathlib import Path
+from dotenv import load_dotenv
 
-BASE_PATH = Path("./results")
+load_dotenv()
+
+BASE_PATH = Path(os.getenv("RESULT_FOLDER"))
 
 def create_folder(name: str | Path) -> Path:
     path = BASE_PATH / name
