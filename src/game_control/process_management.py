@@ -7,7 +7,7 @@ import game_control.screen_control_utils as scu
 
 GAME_TASK_NAME = "ck3.exe"
 GAME_PATH = Path(r"C:\Users\pawel\Documents\STUDIA\magisterka\ck3_debug.exe.lnk")
-GAME_START_TIME = 30 #[s]
+GAME_START_TIME = 45 #[s]
 
 def game_has_been_started() -> bool:
     return GAME_TASK_NAME in (p.name() for p in psutil.process_iter())

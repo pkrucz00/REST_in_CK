@@ -7,14 +7,14 @@ As for now this file only serves as a test if the whole pipeline can be run on t
 3. Close the game.
 """
 
-REQUEST = {"small_forehead": {"forehead_height": 0},
-           "big_forehead": {"forehead_height": 255},
+REQUEST = {"small_forehead": {"head_height": 0},
+           "big_forehead": {"head_height": 255},
            "multiple_arguments": {"forehead_height": 0, "eye_distance": 255}}
 
 def main():
     game.prepare()
-    game.load_face("freddie_mercury")
-    # game.process_face(REQUEST)
+    freddie_dna_text = game.load_face("freddie_mercury")
+    game.process_face(freddie_dna_text, REQUEST)
     # game.terminate()
 
 if __name__=="__main__":
