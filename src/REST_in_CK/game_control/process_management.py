@@ -3,11 +3,14 @@ import psutil
 import time
 from pathlib import Path
 
+from dotenv import load_dotenv
 import game_control.screen_control_utils as scu
 
-GAME_TASK_NAME = "ck3.exe"
-GAME_PATH = Path(r"C:\Users\pawel\Documents\STUDIA\magisterka\ck3_debug.exe.lnk")
-GAME_START_TIME = 45 #[s]
+load_dotenv()
+
+GAME_TASK_NAME = os.getenv("GAME_TASK_NAME")
+GAME_PATH = Path(os.getenv("GAME_PATH"))
+GAME_START_TIME = int(os.getenv("GAME_START_TIME")) #[s]
 
 def game_has_been_started() -> bool:
     return GAME_TASK_NAME in (p.name() for p in psutil.process_iter())

@@ -19,7 +19,6 @@ def paste_dna() -> str:
     return pyperclip.paste()
 
 def modify_gene_value(line: str, value: str):
-    print(f"line: {line}")
     DOM_GENE_VAL_POS = 2
     splitted_line = line.split()
     splitted_line[DOM_GENE_VAL_POS] = value
@@ -35,8 +34,6 @@ def change_line_if_needed(line: str, genes_to_change: dict[str, int]) -> str:
     return new_line
 
 def change_dna(dna_text: str, genes_to_change: dict[str, int]) -> str:    
-    print(dna_text)
     dna_lines = dna_text.split("\n")
-    print(dna_lines)
     new_dna_lines = [change_line_if_needed(line, genes_to_change) for line in dna_lines]
     return "\n".join(new_dna_lines)

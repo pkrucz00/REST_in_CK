@@ -5,7 +5,11 @@ from pathlib import Path
 import pyautogui as pag
 import pydirectinput as pdag
 
+from dotenv import load_dotenv
+load_dotenv()
+
 PICS_FOLDER = Path(os.path.dirname(__file__)) / "../static/locate_pics"
+CONFIDENCE = float(os.getenv("LOCATE_CONFIDENCE"))
 
 def activate_ck3_window() -> None:
     title = "Crusader Kings III"

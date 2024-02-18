@@ -1,10 +1,15 @@
+import os
 import time
 from pathlib import Path
 
 import game_control.screen_control_utils as scu
 import game_control.dna_manipulation as dna
 
-SCREENSHOT_WAIT_TIME = 0.05 # [s]  - the game needs some time to render the face
+from dotenv import load_dotenv
+load_dotenv()
+
+
+SCREENSHOT_WAIT_TIME = float(os.getenv("SCREENSHOT_WAIT_TIME")) # [s]  - the game needs some time between pasting the dna and taking a screenshot to render the image 
 MALE_FACE_REGION = (489, 150, 300, 300)
 
 def open_debug_mode() -> None:

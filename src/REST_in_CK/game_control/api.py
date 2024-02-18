@@ -24,7 +24,6 @@ def process_face(dna_text: str, req: dict[str, dict[str, int]]) -> None:
         out_path = io.create_folder(out_folder_name)
         
         mod_dna_text = dna_manipulation.change_dna(dna_text, genes_to_change)
-        print(mod_dna_text)
         debug_mode_traversal.load_dna(mod_dna_text)
         io.persist_dna(mod_dna_text, out_path)
         debug_mode_traversal.take_screenshot(out_path)
