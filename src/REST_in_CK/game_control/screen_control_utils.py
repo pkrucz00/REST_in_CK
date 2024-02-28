@@ -59,6 +59,5 @@ def press(key: pag.KEYBOARD_KEYS, direct_x: bool = False) -> None:
     pdag.press(key) if direct_x else pag.press(key)
     
 
-def screenshot_face(region: tuple[int, int, int, int], output_folder: str) -> None:
-    output_path = output_folder / "img.jpg"
+def screenshot_face(region: tuple[int, int, int, int], output_path: str) -> None:
     pag.screenshot(output_path, region=region)

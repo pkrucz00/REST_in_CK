@@ -19,14 +19,17 @@ def load_face(face_name: str) -> None:
 
 
 def process_face(dna_text: str, req: dict[str, dict[str, int]]) -> None:
+    screenshot_path = io.create_folder("screenshots")
+    dna_path = io.create_folder("dna")
     for key, genes_to_change in req.items():
-        out_folder_name = f"{datetime.now().strftime('%Y%m%d_%H%M%S%f')}_{key}"
-        out_path = io.create_folder(out_folder_name)
+        model_name = f"{datetime.now().strftime('%Y%m%d_%H%M%S%f')}_{key}"
+        model_screenshot_path = screenshot_path / f"{model_name}.jpg"
+        model_dna_path = dna_path / f"{model_name}.txt"
         
         mod_dna_text = dna_manipulation.change_dna(dna_text, genes_to_change)
         debug_mode_traversal.load_dna(mod_dna_text)
-        io.persist_dna(mod_dna_text, out_path)
-        debug_mode_traversal.take_screenshot(out_path)
+        io.persist_dna(mod_dna_text, model_dna_path)
+        debug_mode_traversal.take_screenshot(model_screenshot_path)
                 
         
 def terminate() -> None:
