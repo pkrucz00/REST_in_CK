@@ -24,8 +24,9 @@ def start_game() -> None:
     os.startfile(GAME_PATH)
     time.sleep(GAME_START_TIME)
     try:
-        scu.find_button("main_logo")
+        scu.find_button("main_menu_indicator")
         scu.activate_ck3_window()
+        scu.move_ck3_to_corner()
     except (RuntimeError, AssertionError) as err:
         print("Game did not start successfully.")
         print(err)

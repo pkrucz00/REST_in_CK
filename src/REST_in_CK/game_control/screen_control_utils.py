@@ -32,8 +32,7 @@ def activate_ck3_window() -> None:
 
 
 def find_button(pic_name: str) -> pag.Point:
-    confidence = 0.95
-    
+    confidence = CONFIDENCE
     pic_path = f"{PICS_FOLDER.as_posix()}/{pic_name}.png"    
     button_placement = pag.locateOnScreen(pic_path, confidence=confidence)
     if not button_placement:
@@ -61,3 +60,7 @@ def press(key: pag.KEYBOARD_KEYS, direct_x: bool = False) -> None:
 
 def screenshot_face(region: tuple[int, int, int, int], output_path: str) -> None:
     pag.screenshot(output_path, region=region)
+    
+def move_ck3_to_corner() -> None:
+    np = pag.getActiveWindow()
+    np.moveTo(0, 0)

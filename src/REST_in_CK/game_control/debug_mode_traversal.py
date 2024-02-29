@@ -10,7 +10,7 @@ load_dotenv()
 
 
 SCREENSHOT_WAIT_TIME = float(os.getenv("SCREENSHOT_WAIT_TIME")) # [s]  - the game needs some time between pasting the dna and taking a screenshot to render the image 
-MALE_FACE_REGION = (489, 150, 300, 300)
+MALE_FACE_REGION = (505, 180, 300, 300)
 
 def open_debug_mode() -> None:
     scu.press("`", direct_x=True)   # open debug panel

@@ -2,6 +2,8 @@ import game_control.api as game
 import json
 from time import time
 
+import traceback
+
 """
 As for now this file serves as a test for the whole pipeline.
 The only responsibility of this file for now is to:
@@ -26,13 +28,14 @@ def main():
         game.prepare()
         t1 = time()
         freddie_dna_text = game.load_face("freddie_mercury")
-        game.process_face(freddie_dna_text, request)
-    except Exception as e:
-        print("There was an error")
-        print(e)
+        game.process_face(freddie_dna_text, REQUEST)
+        print(f"Time taken: {time() - t1} [s]")
+    except Exception:
+        print("There was an error: ")
+        print(traceback.format_exc())
     finally:
         game.terminate()
-        print(f"Time taken: {time() - t1} [s]")
+        
 
 if __name__=="__main__":
     main()
