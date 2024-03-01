@@ -34,13 +34,10 @@ def change_game_resolution(resolution: tuple[int, int]) -> None:
         
     for idx, line in enumerate(settings_lines):
         if "\"display_mode\"" in line:
-            print("Changing display mode")
             _change_value(settings_lines, idx, "windowed")
         if "\"windowed_resolution\"" in line:
-            print("Changing windowed resolution")
             _change_value(settings_lines, idx, resolution_str)
         if "\"scale\"" in line:  # changing gui scale to 100%
-            print("Changing scale")
             _change_value(settings_lines, idx, "1")
     
     with open(SETTINGS_FILE_PATH, "w", encoding="UTF-8") as settings_file:
@@ -59,7 +56,6 @@ def start_game() -> None:
     os.startfile(GAME_PATH)
     time.sleep(GAME_START_TIME)
     try:
-        scu.find_button("main_menu_indicator")
         scu.activate_ck3_window()
         scu.move_ck3_to_corner()
     except (RuntimeError, AssertionError) as err:

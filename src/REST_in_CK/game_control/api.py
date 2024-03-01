@@ -19,7 +19,7 @@ def load_face(face_name: str) -> None:
     return dna_text
 
 
-def process_face(dna_text: str, req: dict[str, dict[str, int]]) -> None:
+def process_face(dna_text: str, req: dict[str, dict[str, int]], resolution: tuple[int, int]) -> None:
     screenshot_path = io.create_folder("screenshots")
     dna_path = io.create_folder("dna")
     for key, genes_to_change in req.items():
@@ -30,7 +30,7 @@ def process_face(dna_text: str, req: dict[str, dict[str, int]]) -> None:
         mod_dna_text = dna_manipulation.change_dna(dna_text, genes_to_change)
         debug_mode_traversal.load_dna(mod_dna_text)
         io.persist_dna(mod_dna_text, model_dna_path)
-        debug_mode_traversal.take_screenshot(model_screenshot_path)
+        debug_mode_traversal.take_screenshot(model_screenshot_path, resolution)
                 
         
 def terminate() -> None:

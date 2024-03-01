@@ -20,19 +20,14 @@ REQUEST = {"small_forehead": {"head_height": 0},
            "multiple_arguments": {"forehead_height": 0, "eye_distance": 255}}
 
 @click.command()
-@click.option("--resolution", type=(int, int), default=(1920, 1080), help="Resolution of the game")
+@click.option("-r", "--resolution", type=(int, int), default=(1920, 1080), help="Resolution of the game")
 def main(resolution):
-    with open("./src/REST_in_CK/static/requests/head_genes.json", "r") as file: 
-        request = json.load(file)
-    
-    print(f"Number of faces to generate: {len(request)}")
-    print(resolution)
     try:
         game.prepare(resolution)
         
         t1 = time()
         freddie_dna_text = game.load_face("freddie_mercury")
-        game.process_face(freddie_dna_text, REQUEST)
+        game.process_face(freddie_dna_text, REQUEST, resolution)
         print(f"Time taken: {time() - t1} [s]")
     except Exception:
         print("There was an error: ")
