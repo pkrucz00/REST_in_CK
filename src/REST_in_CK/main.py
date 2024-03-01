@@ -28,7 +28,7 @@ def main(resolution):
     print(f"Number of faces to generate: {len(request)}")
     print(resolution)
     try:
-        game.prepare()
+        game.prepare(resolution)
         
         t1 = time()
         freddie_dna_text = game.load_face("freddie_mercury")

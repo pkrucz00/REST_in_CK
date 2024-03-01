@@ -6,7 +6,8 @@ import game_control.dna_manipulation as dna_manipulation
 import game_control.io_operations as io
 
 
-def prepare() -> None:
+def prepare(resolution: tuple[int, int]) -> None:
+    process_management.change_game_resolution(resolution)
     process_management.start_game()
     debug_mode_traversal.open_debug_mode()
     debug_mode_traversal.stabilize_heads()
